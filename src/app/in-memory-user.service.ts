@@ -11,9 +11,18 @@ export class InMemoryUserService implements InMemoryDbService{
   constructor() { }
 
   createDb(){
-    this._database = {};
-    this.makeUserTableAndDummyData();
-    return this._database;
+
+    const users: User[] = [
+      {id: 1, name: 'woojin', age: 33},
+      {id: 2, name: 'yunhye', age: 31},
+      {id: 3, name: 'sunhye', age: 29}
+    ];
+
+    return {users};
+
+    // this._database = {};
+    // this.makeUserTableAndDummyData();
+    // return this._database;
   }
 
   private createTable(tableName: string, initialData: any[]){

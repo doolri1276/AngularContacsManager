@@ -16,18 +16,19 @@ export class AppComponent {
   }
 
   findUser(id){
-    const onSuccess = res => {
-      const user = res.data;
-      this.searchedUser = user;
-    };
 
-    this.userService.getUser(id, onSuccess);
+    this.userService.getUser(id).subscribe((res: User) => {
+      console.log("findUser 결과임 : "+JSON.stringify(res));
+      this.searchedUser = res;
+    })
   }
 
   addUser(){
-    const newUser = {name: this.user.name, age: this.user.age};
-    const callback = res=> {
-      const newUser: User = res.data;
+    const newUser = {id: this.user.id, name: this.user.name, age: this.user.age};
+    console.log("넣으려는 newUser : "+JSON.stringify(newUser));
+
+    const callback = (res: User)=> {
+      const newUser: User = res;
       console.log(JSON.stringify(newUser));
       alert(`사용자 생성\nID : ${newUser.id}\n이름 : ${newUser.name}\n나이 : ${newUser.age}`);
     };
@@ -42,8 +43,8 @@ export class AppComponent {
       return;
     }
 
-    const callback = res => {
-      const newUser: User = res.data;
+    const callback = (res: User) => {
+      const newUser: User = res;
       console.log(JSON.stringify(newUser));
       alert(`사용자 변경\nID : ${newUser.id}\n이름 : ${newUser.name}\n나이 : ${newUser.age}`);
     }

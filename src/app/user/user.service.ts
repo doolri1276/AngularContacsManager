@@ -8,8 +8,8 @@ export class UserService {
 
   constructor(public http:HttpClient) { }
 
-  getUser(id: number, callback){
-    this.http.get(`/api/users/${id}`).subscribe(callback);
+  getUser(id: number){
+    return this.http.get(`/api/users/${id}`);
   }
 
   addUser(user: any, callback) {
