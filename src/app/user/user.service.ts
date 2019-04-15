@@ -8,7 +8,7 @@ export class UserService {
 
   constructor(public http:HttpClient) { }
 
-  getuser(id: number, callback){
+  getUser(id: number, callback){
     this.http.get(`/api/users/${id}`).subscribe(callback);
   }
 
